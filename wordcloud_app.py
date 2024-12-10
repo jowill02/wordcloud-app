@@ -35,3 +35,19 @@ else:
 if st.button("Clear All Words"):
     open("word_list.txt", "w").close()  # Clear the word list
     st.experimental_rerun()
+
+from matplotlib.colors import ListedColormap
+
+# Define a custom colormap
+custom_colormap = ListedColormap(["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FFC300"])
+
+# Generate the Word Cloud with the custom colormap
+wordcloud = WordCloud(
+    width=800,
+    height=400,
+    background_color="white",
+    colormap=custom_colormap
+).generate(wordcloud_text)
+
+# Display the word cloud
+st.image(wordcloud.to_array(), use_column_width=True)
