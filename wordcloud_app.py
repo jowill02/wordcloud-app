@@ -51,3 +51,23 @@ wordcloud = WordCloud(
 
 # Display the word cloud
 st.image(wordcloud.to_array(), use_column_width=True)
+
+import matplotlib.pyplot as plt
+
+# Generate gradient background
+def plot_with_gradient(wordcloud):
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wordcloud, interpolation="bilinear")
+    ax.set_axis_off()
+
+    # Create a gradient
+    ax.imshow(
+        np.linspace(0, 1, wordcloud.width).reshape(1, -1),
+        aspect="auto",
+        cmap="coolwarm",
+        alpha=0.5,
+        extent=ax.get_xlim() + ax.get_ylim()
+    )
+    st.pyplot(fig)
+
+plot_with_gradient(wordcloud)
