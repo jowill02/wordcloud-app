@@ -71,3 +71,20 @@ def plot_with_gradient(wordcloud):
     st.pyplot(fig)
 
 plot_with_gradient(wordcloud)
+
+if words:
+    wordcloud_text = " ".join([word.strip() for word in words])
+
+    # Generate Word Cloud (with mask or colors, depending on your implementation)
+    wordcloud = WordCloud(
+        width=800,
+        height=400,
+        background_color="white",
+        mask=mask_image,  # Optional: Replace with your mask
+        colormap=custom_colormap  # Optional: Replace with your colormap
+    ).generate(wordcloud_text)
+
+    # Display the word cloud
+    st.image(wordcloud.to_array(), use_column_width=True)
+else:
+    st.write("No words submitted yet! Please add words using the sidebar.")
